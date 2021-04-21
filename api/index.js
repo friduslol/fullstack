@@ -1,13 +1,15 @@
 const express = require('express');
 const port = 3001;
-const route = 'api/v1';
-const radioRoutes = require('./routes/channelRoutes');
+const channelRoutes = require('./routes/channelRoutes.js');
 
 //server setup
 const app = express();
 
 //parsing req.body for server
-app.use(express.json)
+app.use(express.json())
+
+//middleware for checking, get accsess to all routes
+app.use('/api/v1/channels', channelRoutes);
 
 //starts the server
 app.listen(port, (err) => {
@@ -19,6 +21,3 @@ app.listen(port, (err) => {
     console.log(`Listening on port ${port}`);
   });
 
-
-//middleware for checking, get accsess to all routes
-app.use(route + '/channel', channelRoutes);
