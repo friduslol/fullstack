@@ -1,8 +1,15 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import CCStyles from '../styles/ChannelCardStyles.module.css';
+import { useHistory } from "react-router-dom";
 
+//receiving props from parent CardsWrapper
 function ChannelCard(props) {
+    const historyHook = useHistory();
+
+    const ClickToRender = () => {
+        //using channel name to create new unique route
+        historyHook.push(`/details/${props.data.name}`);
+    }
 
     return (
         <div className={CCStyles.channelCard}>
@@ -12,7 +19,8 @@ function ChannelCard(props) {
             <div className={CCStyles.channelInfor}>
                 <h3>{props.data.name}</h3>
                 <p>{props.data.tagline}</p>
-                <a href="">{`Klicka för kanal ${props.data.name} >>`}</a>
+
+                <p onClick={ClickToRender}>{`Klicka för kanal ${props.data.name} >>`}</p>
             </div>
         </div>
     )
