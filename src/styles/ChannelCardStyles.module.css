@@ -1,0 +1,58 @@
+.channelWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.channelCard {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 420px;
+    margin: 10px;
+}
+
+.imgWrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.5rem;
+    width: 90%;
+}
+
+.channelImg {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.channelInfor {
+    padding: 1rem;
+    margin: auto;
+}
+
+/* --------------- MEDIA QUERIES --------------- */
+@media screen and (min-width: 576px) {
+    .channelWrapper {
+       align-items: flex-start;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .channelCard {
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .channelWrapper {
+        padding: 2rem;
+    }
+    .channelCard {
+        max-width: 320px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .channelCard {
+        max-width: 320px;
+    }
+}

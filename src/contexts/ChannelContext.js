@@ -20,7 +20,7 @@ const ChannelContextProvider = (props) => {
         if(channelsData.length === 0) {
             console.log('error something went wrong');
         } else {
-            setChannels([channelsData.channels]);
+            setChannels(channelsData.channels);
         }
     }
 
