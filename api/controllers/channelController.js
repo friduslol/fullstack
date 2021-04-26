@@ -21,7 +21,7 @@ const getSingleDaySchema = async (req, res) => {
         `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
     );
     channelSchema = await channelSchema.json();
-    res.json(channelSchema.schedule);
+    res.json(channelSchema);
 };
 
 //for fetching categories

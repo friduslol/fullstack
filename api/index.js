@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json())
 
 //middleware for checking, get accsess to all routes
-app.use('/api/v1/channels', channelRoutes);
+app.use("/api/v1/channels", channelRoutes);
 app.use('/api/v1/users', userRoutes);
 
 //starts the server
