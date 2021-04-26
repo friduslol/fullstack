@@ -5,22 +5,17 @@ export const ChannelContext = createContext();
 const ChannelContextProvider = (props) => {
     const [channels, setChannels] = useState([]);
     const [channelSchedule, setchannelSchedule] = useState([]);
-    const [channelId, setChannelId] = useState([]);
+    // const [channelId, setChannelId] = useState(-1);
 
-    useEffect(() => {
-        console.log("runs on rendering");
-        fetchAllChannels();
-        // eslint-disable-next-line
-    }, [])
+    // const saveChannelId = (channelId) => {
+    //     if(!channelId) {
+    //         console.log("no channelId is saved");
+    //     } else {
+    //         setChannelId(channelId);
+    //     }
+    // }
 
 
-    const saveChannelId = (channelId) => {
-        if(!channelId) {
-            console.log("no channelId is saved");
-        } else {
-            setChannelId(channelId);
-        }
-    }
 
     //for fetching data about channels
     const fetchAllChannels = async () => {
@@ -34,16 +29,41 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-    const fetchSchedule = async () => {
-        let scheduleData = await fetch(`/api/v1/channels/schedule/${channelId}`);
-        scheduleData = await scheduleData.json();
+    //for fetching channel schedule
+    const fetchSchedule = async (channelId) => {
+        try {
+            let scheduleData = await fetch(`/api/v1/channels/schedule/${channelId}`);
+            scheduleData = await scheduleData.json();
 
-        if(scheduleData.length === 0) {
-            console.log('something went wrong');
-        } else {
-            setchannelSchedule(scheduleData);
+            if(scheduleData.length === 0) {
+                console.log('something went wrong');
+            } else {
+                setchannelSchedule(scheduleData);
+            }
+        }
+        catch(err) {
+            console.log(err);
         }
     }
+
+    //for fetching data about unique channel
+    const fetchChannel = async (channelId) => {
+        try {
+            let channelData = await fetch(`/api/v1/channels/channel/${channelId}`);
+            channelData = await channelData.json();
+
+            if(channelData.length === 0) {
+                console.log('something went wrong');
+            } else {
+                // setChannel(channelData);
+                return channelData;
+            }
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
 
 
 
@@ -52,7 +72,8 @@ const ChannelContextProvider = (props) => {
     const values = {
         fetchAllChannels,
         fetchSchedule,
-        saveChannelId,
+        fetchChannel,
+        //saveChannelId,
         channels,
         channelSchedule
     };

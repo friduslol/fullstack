@@ -11,7 +11,7 @@ function App() {
         <ChannelContextProvider>
         <Navbar />
         <Route exact path="/" component={Home} />
-        <Route exact path="/details/:name" component={Details} />
+        <Route exact path="/details/:id" component={Details} />
         </ChannelContextProvider>
       </BrowserRouter>
     </div>

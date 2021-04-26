@@ -3,8 +3,16 @@ import { ChannelContext } from '../contexts/ChannelContext';
 import ChannelWrapper from '../components/ChannelWrapper';
 
 const Home = () => {
-    const { channels } = useContext(ChannelContext);
+    const { channels, fetchAllChannels } = useContext(ChannelContext);
     console.log("this is in homeP: ", channels)
+
+    useEffect(() => {
+        console.log("runs on rendering");
+        fetchAllChannels();
+        // eslint-disable-next-line
+    }, [])
+
+
 
     return(
         <div className="Home">

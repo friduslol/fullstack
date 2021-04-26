@@ -1,6 +1,6 @@
 import ChannelCard from "./ChannelCard";
 import { ChannelContext} from "../contexts/ChannelContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import CCStyles from '../styles/ChannelCardStyles.module.css';
 
 

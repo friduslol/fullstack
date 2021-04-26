@@ -4,23 +4,24 @@ import { useContext, useState, useEffect } from "react";
 import ScheduleWrapper from "../components/ScheduleWrapper";
 
 const Details = (props) => {
-    const { channels, channelSchedule, fetchSchedule } = useContext(ChannelContext);
+    const { channels, fetchSchedule, fetchChannel } = useContext(ChannelContext);
 
     const [detailChannel, setDetailChannel] = useState(null);
 
-
+    console.log("in details, props", props);
     useEffect(() => {
-        fetchSchedule();
+
         // eslint-disable-next-line
     }, [])
 
-    console.log("this is in detailsP", channelSchedule);
-
     useEffect(() => {
-        if(channels) {
-            //finding the right channel and uppdating sate variable with data
-            setDetailChannel(channels.find((channel) => channel.name == props.match.params.name));
-        }
+        //sending argumnet with the unique channel id from avalible from useHistory hook.
+        fetchSchedule(props.match.params.id);
+
+        //sendig id for func and saving retun value from func in variable
+        let channel = fetchChannel(props.match.params.id);
+
+        setDetailChannel(channel);
     }, [channels])
 
     const renderDetails = () => {

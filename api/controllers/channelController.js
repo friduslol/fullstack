@@ -19,8 +19,9 @@ const getAllChannels = async (req, res) => {
 //for fetching schema per date for a specific channel
 const getSingleDaySchema = async (req, res) => {
     let channelSchema = await fetch(
-        `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
+        `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}`
     );
+    //&date=${req.query.date}
     channelSchema = await channelSchema.json();
 
     //transforming api date
