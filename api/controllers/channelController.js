@@ -4,7 +4,8 @@ const fetch = require('node-fetch');
 const json = 'format=json';
 //to get all data
 const paginationFalse = 'pagination=false';
-
+//to get data Func
+const utils = require("../core/utilities");
 
 //for fetching all avaliable channels
 const getAllChannels = async (req, res) => {
@@ -21,6 +22,17 @@ const getSingleDaySchema = async (req, res) => {
         `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
     );
     channelSchema = await channelSchema.json();
+
+    //transforming api date
+    channelSchema.schedule = channelSchema.schedule.map((d) => {
+        console.log(new Date(d.starttimeutc));
+        return {
+          ...d,
+          starttimeutc: utils.convertToDateObject(d.starttimeutc),
+          endtimeutc: utils.convertToDateObject(d.endtimeutc),
+        };
+      });
+
     res.json(channelSchema.schedule);
 };
 
