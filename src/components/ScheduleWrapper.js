@@ -9,7 +9,7 @@ function ScheduleWrapper() {
 
     return (
         <div className={SCStyles.scheduleWrapper}>
-            {/* <h1>{channelSchedule.channel.name}</h1> */}
+            <h2 className={SCStyles.scheduleHeader}>Dagens sändningar</h2>
             {channelSchedule.map((program, i) => (
                 //sending props to sheduleCard
                 <ScheduleCard key={i} data={program} />

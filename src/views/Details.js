@@ -26,7 +26,7 @@ const Details = (props) => {
     const renderDetails = () => {
         return(
             <div className={DStyles.DetailsWrapper}>
-                <h1>Dagens sändningar för {detailChannel.name}</h1>
+                <h1 className={DStyles.DetailsHeader}>Dagens sändningar för {detailChannel.name}</h1>
                 <ScheduleWrapper />
             </div>
         );
