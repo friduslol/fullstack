@@ -41,7 +41,7 @@ const ChannelContextProvider = (props) => {
         if(scheduleData.length === 0) {
             console.log('something went wrong');
         } else {
-            setchannelSchedule(scheduleData.schedule);
+            setchannelSchedule(scheduleData);
         }
     }
 
