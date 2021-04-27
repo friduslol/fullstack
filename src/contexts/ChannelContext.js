@@ -5,7 +5,7 @@ export const ChannelContext = createContext();
 const ChannelContextProvider = (props) => {
     const [channels, setChannels] = useState([]);
     const [channelSchedule, setchannelSchedule] = useState([]);
-    // const [channelId, setChannelId] = useState(-1);
+    const [channel, setChannel] = useState(null);
 
     // const saveChannelId = (channelId) => {
     //     if(!channelId) {
@@ -52,11 +52,11 @@ const ChannelContextProvider = (props) => {
             let channelData = await fetch(`/api/v1/channels/channel/${channelId}`);
             channelData = await channelData.json();
 
-            if(channelData.length === 0) {
+            if(!channelData) {
                 console.log('something went wrong');
             } else {
-                // setChannel(channelData);
-                return channelData;
+                setChannel(channelData);
+                //return channelData;
             }
         }
         catch(err) {
@@ -64,18 +64,14 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-
-
-
-
-
     const values = {
         fetchAllChannels,
         fetchSchedule,
         fetchChannel,
         //saveChannelId,
         channels,
-        channelSchedule
+        channelSchedule,
+        channel
     };
 
     return(
