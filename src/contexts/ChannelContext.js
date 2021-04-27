@@ -6,6 +6,7 @@ const ChannelContextProvider = (props) => {
     const [channels, setChannels] = useState([]);
     const [channelSchedule, setchannelSchedule] = useState([]);
     const [channel, setChannel] = useState(null);
+    const [channelPrograms, setChannelPrograms] = useState([]);
 
     // const saveChannelId = (channelId) => {
     //     if(!channelId) {
@@ -64,14 +65,33 @@ const ChannelContextProvider = (props) => {
         }
     }
 
+    //for fetching programs from unique channel
+    const fetchPrograms = async (channelId) => {
+        try {
+            let programs = await fetch(`/api/v1/channels/programs/${channelId}`);
+            programs = await programs.json();
+
+            if(programs.length === 0) {
+                console.log('something went wrong');
+            } else {
+                setChannelPrograms(programs);
+            }
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
     const values = {
         fetchAllChannels,
         fetchSchedule,
         fetchChannel,
+        fetchPrograms,
         //saveChannelId,
         channels,
         channelSchedule,
-        channel
+        channel,
+        channelPrograms
     };
 
     return(
