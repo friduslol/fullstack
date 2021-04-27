@@ -8,7 +8,7 @@ const Navbar = () => {
             <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
             <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                 <ReactBootstrap.Nav className="mr-auto">
-                <ReactBootstrap.Nav.Link href="#home">sida 2</ReactBootstrap.Nav.Link>
+                <ReactBootstrap.Nav.Link as={Link} to="/categories">sida 2</ReactBootstrap.Nav.Link>
                 <ReactBootstrap.Nav.Link href="#link">sida 3</ReactBootstrap.Nav.Link>
                 <ReactBootstrap.Nav.Link href="#link">Logga in</ReactBootstrap.Nav.Link>
                 </ReactBootstrap.Nav>

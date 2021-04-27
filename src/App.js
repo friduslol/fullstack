@@ -1,5 +1,6 @@
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from './views/Home';
+import Categories from './views/Categories';
 import Details from './views/Details';
 import Navbar from './components/Navbar';
 import ChannelContextProvider from './contexts/ChannelContext';
@@ -11,6 +12,7 @@ function App() {
         <ChannelContextProvider>
         <Navbar />
         <Route exact path="/" component={Home} />
+        <Route exact path="/categories" component={Categories} />
         <Route exact path="/details/:id" component={Details} />
         </ChannelContextProvider>
       </BrowserRouter>
