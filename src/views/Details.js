@@ -12,6 +12,7 @@ const Details = (props) => {
         fetchSchedule(props.match.params.id);
         fetchChannel(props.match.params.id);
         fetchPrograms(props.match.params.id);
+    // eslint-disable-next-line
     }, [])
 
     const renderDetails = () => {

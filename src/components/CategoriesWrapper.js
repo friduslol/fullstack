@@ -11,6 +11,7 @@ function CategoriesWrapper() {
             {categories.map((category, i) => (
                 <CategoryCard key={i} data={category} />
             ))}
+            {}
         </div>
     )
 }
