@@ -4,32 +4,25 @@ import { useContext, useState, useEffect } from "react";
 import ScheduleWrapper from "../components/ScheduleWrapper";
 
 const Details = (props) => {
-    const { channels, fetchSchedule, fetchChannel } = useContext(ChannelContext);
-
-    const [detailChannel, setDetailChannel] = useState(null);
+    const { fetchSchedule, fetchChannel, channel } = useContext(ChannelContext);
 
     useEffect(() => {
-        //sending argumnet with the unique channel id from avalible from useHistory hook.
+        //sending argumnet with the unique channel id, avalible from useHistory hook.
         fetchSchedule(props.match.params.id);
-
-        //sendig id for func and saving retun value from func in variable
-        let channel = fetchChannel(props.match.params.id);
-
-        setDetailChannel(channel);
-    }, [channels])
+        fetchChannel(props.match.params.id);
+    }, [])
 
     const renderDetails = () => {
         return(
             <div className={DStyles.DetailsWrapper}>
-                <h1 className={DStyles.DetailsHeader}>Dagens sändningar för {detailChannel.name}</h1>
-                {console.log("this is channel in detailsP: ", detailChannel)}
+                <h1 className={DStyles.DetailsHeader}>Dagens sändningar för {channel.channel.name}</h1>
                 <ScheduleWrapper />
             </div>
         );
     };
 
     //if detailChannel is true den calling on func to render page, if not error msg will show
-    return detailChannel ? renderDetails() : <p>404, Error something went wrong!</p>
+    return channel ? renderDetails() : <p>404, Error something went wrong!</p>
 
 }
 
