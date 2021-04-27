@@ -8,6 +8,7 @@ const Categories = () => {
 
     useEffect(() => {
         fetchCategories();
+    // eslint-disable-next-line
     }, [])
 
     return(
