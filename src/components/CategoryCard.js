@@ -11,7 +11,7 @@ function CategoryCard(props) {
 
     return (
         <div className={CStyles.categoryCard} onClick={clickToRender}>
-            <p>{props.data.name}</p>
+            <p className={CStyles.categoryName}>{props.data.name}</p>
         </div>
     )
 }

@@ -13,7 +13,6 @@ const Categories = () => {
 
     return(
         <div className={CStyles.categoriesPage}>
-            <h1>Katagorier</h1>
             <CategoriesWrapper />
         </div>
     )
