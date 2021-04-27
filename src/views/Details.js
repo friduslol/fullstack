@@ -8,12 +8,6 @@ const Details = (props) => {
 
     const [detailChannel, setDetailChannel] = useState(null);
 
-    console.log("in details, props", props);
-    useEffect(() => {
-
-        // eslint-disable-next-line
-    }, [])
-
     useEffect(() => {
         //sending argumnet with the unique channel id from avalible from useHistory hook.
         fetchSchedule(props.match.params.id);
@@ -28,6 +22,7 @@ const Details = (props) => {
         return(
             <div className={DStyles.DetailsWrapper}>
                 <h1 className={DStyles.DetailsHeader}>Dagens sändningar för {detailChannel.name}</h1>
+                {console.log("this is channel in detailsP: ", detailChannel)}
                 <ScheduleWrapper />
             </div>
         );
