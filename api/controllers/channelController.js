@@ -52,7 +52,7 @@ const getProgramsForChannel = async (req, res) => {
     `http://api.sr.se/api/v2/programs/index?${json}&${paginationFalse}&channelId=${req.params.channelId}`
     );
     channelPrograms = await channelPrograms.json();
-    res.json(channelPrograms);
+    res.json(channelPrograms.programs);
 }
 
 
