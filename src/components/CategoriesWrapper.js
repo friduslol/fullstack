@@ -8,6 +8,7 @@ function CategoriesWrapper() {
 
     return (
         <div className={CStyles.categoriesWrapper}>
+                <h1 className={CStyles.categoriesHeader}>Klicka på en kategori för att komma till dess programlista.</h1>
             {categories.map((category, i) => (
                 <CategoryCard key={i} data={category} />
             ))}
