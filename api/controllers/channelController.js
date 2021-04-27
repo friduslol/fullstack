@@ -43,7 +43,7 @@ const getCategories = async (req, res) => {
         `http://api.sr.se/api/v2/programcategories?${json}&${paginationFalse}`
     );
     categories = await categories.json();
-    res.json(categories);
+    res.json(categories.programcategories);
 };
 
 //for fetching programs from specific channel

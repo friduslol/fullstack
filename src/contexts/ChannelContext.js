@@ -7,6 +7,7 @@ const ChannelContextProvider = (props) => {
     const [channelSchedule, setchannelSchedule] = useState([]);
     const [channel, setChannel] = useState(null);
     const [channelPrograms, setChannelPrograms] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     // const saveChannelId = (channelId) => {
     //     if(!channelId) {
@@ -15,8 +16,6 @@ const ChannelContextProvider = (props) => {
     //         setChannelId(channelId);
     //     }
     // }
-
-
 
     //for fetching data about channels
     const fetchAllChannels = async () => {
@@ -82,16 +81,35 @@ const ChannelContextProvider = (props) => {
         }
     }
 
+    //for fetching categories
+    const fetchCategories = async () => {
+        try {
+            let categoriesData = await fetch(`/api/v1/channels/categories`);
+            categoriesData = await categoriesData.json();
+
+            if(categoriesData.length === 0){
+                console.log('something went wrong');
+            } else {
+                setCategories(categoriesData);
+            }
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
     const values = {
         fetchAllChannels,
         fetchSchedule,
         fetchChannel,
         fetchPrograms,
+        fetchCategories,
         //saveChannelId,
         channels,
         channelSchedule,
         channel,
-        channelPrograms
+        channelPrograms,
+        categories
     };
 
     return(
