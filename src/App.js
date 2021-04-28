@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/category/programs/:id" component={Programs} />
         <Route exact path="/details/:id" component={Details} />
-        <Route exact path="/User" component={User} />
+        <Route exact path="/user" component={User} />
         </UserContextProvider>
         </ChannelContextProvider>
       </BrowserRouter>

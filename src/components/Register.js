@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const Register = () => {
-    const { transferRegister } = useContext(UserContext);
+    const { registerNewUser } = useContext(UserContext);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -15,11 +15,10 @@ const Register = () => {
     const updateUserEmail = (e) => setEmail(e.target.value);
     const updateUserPassword = (e) => setPassword(e.target.value);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        let newUser = null;
-        newUser = {
+
+        let newUser = {
             firstName,
             lastName,
             email,
@@ -27,7 +26,8 @@ const Register = () => {
         }
 
         if(newUser) {
-            transferRegister(newUser);
+            let result = await registerNewUser(newUser);
+            console.log(result);
         } else {
             console.log("oupsi could not create user");
         }
