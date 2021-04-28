@@ -25,28 +25,28 @@ const registerNewUser = (req, res) => {
     //cheking if user email already exists
     let query = `SELECT * FROM users WHERE email = $email`;
     let params = { $email: userToRegister.email };
-    db.get(query, params, (err, userExist) => {
-        if(userExist) {
-            res.status(400).json({ error: "user with that email already exists"});
-            return;
-        }
-    });
+    db.get(query, params, (err, result) => {
+        console.log("result: ", result);
+        if(result) {
+            res.json( {error: "User with this email already exsits!" });
+        } else {
+            userToRegister.password = Encrypt.encrypt(userToRegister.password);
+            query = `INSERT INTO users (firstName, lastName, email, password) VALUES ($firstName, $lastName, $email, $password)`;
+            params = {
+                $firstName: userToRegister.firstName,
+                $lastName: userToRegister.lastName,
+                $email: userToRegister.email,
+                $password: userToRegister.password
+            };
 
-    userToRegister.password = Encrypt.encrypt(req.body.password);
-    query = `INSERT INTO users (firstName, lastName, email, password) VALUES ($firstName, $lastName, $email, $password)`;
-
-    params = {
-        $firstName: userToRegister.firstName,
-        $lastName: userToRegister.lastName,
-        $email: userToRegister.email,
-        $password: userToRegister.password
-    };
-    db.run(query, params, function(err) {
-        if(err) {
-            res.status(400).json({ error: err});
-            return;
+            db.run(query, params, function(err) {
+                if(err) {
+                    res.status(400).json({ error: err});
+                    return;
+                }
+                res.json({ succsess: "user register seccssfull", lastID: this.lastID});
+            });
         }
-        res.json({ succsess: "user register seccssfull", lastID: this.lastID});
     });
 };
 
