@@ -9,8 +9,7 @@ const Navbar = () => {
             <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                 <ReactBootstrap.Nav className="mr-auto">
                 <ReactBootstrap.Nav.Link as={Link} to="/categories">Katagorier</ReactBootstrap.Nav.Link>
-                <ReactBootstrap.Nav.Link href="#link">sida 3</ReactBootstrap.Nav.Link>
-                <ReactBootstrap.Nav.Link href="#link">Logga in</ReactBootstrap.Nav.Link>
+                <ReactBootstrap.Nav.Link as={Link} to="/User">Logga In</ReactBootstrap.Nav.Link>
                 </ReactBootstrap.Nav>
                 <ReactBootstrap.Form inline>
                 <ReactBootstrap.FormControl type="text" placeholder="Search" className="mr-sm-2" />
