@@ -16,15 +16,19 @@ const Programs = (props) => {
     const renderPrograms = () => {
         return(
             <div className={PStyles.programsPage}>
+               <h1>ProgramLista</h1>
+
                 {categoryPrograms.map((program, i) => (
-                    <div key={i}>
-                        <img src={program.programimage} alt={`for channel ${program.name}`}></img>
-                        <h2 key={i}>{program.name}</h2>
+                    <div key={i} className={PStyles.programsWrapper}>
+                        <div className={PStyles.imgWrapper}>
+                            <img className={PStyles.programImg} src={program.programimage} alt={`for channel ${program.name}`}></img>
+                        </div>
+                        <h2>{program.name}</h2>
                         <p>{program.description}</p>
                         {/*Checking if there is a broadcastinfo key, if not rendering div msg */}
                         {program.broadcastinfo
-                        ? <div>{program.broadcastinfo}</div>
-                        : <div>Det finns just nu ingen sändningstid för detta programmet.</div>
+                        ? <p>{program.broadcastinfo}</p>
+                        : <p>Det finns just nu ingen sändningstid för detta programmet.</p>
                         }
                     </div>
                 ))}
