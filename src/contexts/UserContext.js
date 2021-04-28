@@ -4,7 +4,7 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
-    const [isLoggedin, setIsLoggedin] = useState([false]);
+    const [isLoggedin, setIsLoggedin] = useState(false);
     const [loggedinUser, setLoggedinUser] = useState([]);
 
     // const [member, setMember] = useState([]);
