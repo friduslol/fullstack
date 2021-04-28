@@ -4,12 +4,18 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
+    const [isLoggedin, setIsLoggedin] = useState([false]);
+    const [loggedinUser, setLoggedinUser] = useState([]);
 
     // const [member, setMember] = useState([]);
 
     // useEffect(() => {
     //     console.log("this is member in usercontext: ", member);
     // }, [member])
+
+    useEffect(() => {
+        console.log(isLoggedin, loggedinUser);
+    }, [loggedinUser])
 
 
     const registerNewUser = async (newUser) => {
@@ -24,8 +30,29 @@ const UserContextProvider = (props) => {
         return result;
     }
 
+    const loginUser = async (user) => {
+        let result = await fetch("api/v1/users/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+        });
+        result = await result.json();
+        //return result;
+
+        if(result.success) {
+            setIsLoggedin(true)
+            setLoggedinUser(result);
+        } else {
+            console.log("ojoj something went wrong");
+        }
+    }
+
     const values = {
-        registerNewUser
+        registerNewUser,
+        loginUser,
+        isLoggedin
     };
 
     return(

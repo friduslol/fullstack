@@ -4,7 +4,8 @@ const userController = require('../controllers/userControler');
 
 // router.get("", userController.getAllUsers);
 
-//for creating a new user in the DB
+// router.get("/whoami", userController.whoami);
 router.post("/register", userController.registerNewUser);
+router.post("/login", userController.loginUser);
 
 module.exports = router;
