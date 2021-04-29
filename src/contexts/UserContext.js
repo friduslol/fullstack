@@ -5,7 +5,7 @@ export const UserContext = createContext();
 const UserContextProvider = (props) => {
 
     const [isLoggedin, setIsLoggedin] = useState(false);
-    const [loggedinUser, setLoggedinUser] = useState([]);
+    const [loggedinUser, setLoggedinUser] = useState(false);
 
     // const [member, setMember] = useState([]);
 
@@ -41,7 +41,7 @@ const UserContextProvider = (props) => {
         result = await result.json();
         //return result;
 
-        if(result.success) {
+        if(result.firstName) {
             setIsLoggedin(true)
             setLoggedinUser(result);
         } else {
@@ -52,7 +52,8 @@ const UserContextProvider = (props) => {
     const values = {
         registerNewUser,
         loginUser,
-        isLoggedin
+        isLoggedin,
+        loggedinUser
     };
 
     return(

@@ -36,7 +36,8 @@ const loginUser = (req, res) => {
         if (userInDB.password === req.body.password) {
           delete userInDB.password;
           req.user = userInDB;
-          res.json({ success: "Login successfull", loggedInUser: userInDB });
+        //   res.json({ success: "Login successfull", loggedInUser: userInDB });
+          res.json(userInDB);
           return;
         } else {
           res.status(401).json({ error: "Bad credentials" });
