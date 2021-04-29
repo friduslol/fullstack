@@ -19,6 +19,32 @@ db.all = util.promisify(db.all); //for get all users
 //         })
 // };
 
+// const whoami = (req, res) => {
+//     res.json(req.session.user || null);
+//   };
+
+const loginUser = (req, res) => {
+    let query = `SELECT * FROM users WHERE email = $email`;
+    let params = { $email: req.body.email };
+
+    db.get(query, params, (err, userInDB) => {
+        if (!userInDB) {
+          res.status(401).json({ error: "Bad credentials" });
+          return;
+        }
+        req.body.password = Encrypt.encrypt(req.body.password);
+        if (userInDB.password === req.body.password) {
+          delete userInDB.password;
+          req.user = userInDB;
+          res.json({ success: "Login successfull", loggedInUser: userInDB });
+          return;
+        } else {
+          res.status(401).json({ error: "Bad credentials" });
+          return;
+        }
+    });
+}
+
 const registerNewUser = (req, res) => {
     let userToRegister = req.body;
 
@@ -52,5 +78,7 @@ const registerNewUser = (req, res) => {
 
 module.exports = {
     // getAllUsers,
-    registerNewUser
+    registerNewUser,
+    loginUser,
+    // whoami
 }
