@@ -1,17 +1,31 @@
 import { UserContext } from "../contexts/UserContext";
+import { ChannelContext } from "../contexts/ChannelContext";
 import { useContext, useEffect } from "react";
 
 const Profile = () => {
     const { loggedinUser } = useContext(UserContext);
+    const { fetchFaves, faves } = useContext(ChannelContext);
+    // const [faves, setFaves] = useState();
 
     useEffect(() => {
+        if(loggedinUser) {
+            fetchFaves(loggedinUser.id)
+        }
         console.log("in profile", loggedinUser);
     }, [loggedinUser])
 
 
+    // const getFavChannels = (faves) => {
+    //     faves.map((fave, i) => {
+    //     channels = fetchCannelById(fave.channelId);
+    //     return setFavChannel(channels)
+    //     })
+    // }
+
+
+
         return (
             <div>
-                <h1>User page</h1>
                 {loggedinUser ? (
                     <div>
                         <p>{loggedinUser.firstName} {loggedinUser.lastName}</p>
@@ -19,6 +33,9 @@ const Profile = () => {
 
                         <div>
                             <h2>Favoritkanaler:</h2>
+                            {faves.map((fave, i) => (
+                                <p key={i}>{fave.channel.name}</p>
+                            ))}
                         </div>
                         <div>
                             <h2>FavoritProgram:</h2>
