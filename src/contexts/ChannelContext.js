@@ -148,6 +148,7 @@ const ChannelContextProvider = (props) => {
         fetchCategories,
         fetchCategoryPrograms,
         fetchFaves,
+        setFaves,
         //saveChannelId,
         channels,
         channelSchedule,
