@@ -55,7 +55,7 @@ const registerNewUser = (req, res) => {
     db.get(query, params, (err, result) => {
         console.log("result: ", result);
         if(result) {
-            res.json( {error: "User with this email already exsits!" });
+            res.json({ error: "User with this email already exsits!" });
         } else {
             userToRegister.password = Encrypt.encrypt(userToRegister.password);
             query = `INSERT INTO users (firstName, lastName, email, password) VALUES ($firstName, $lastName, $email, $password)`;
@@ -75,11 +75,13 @@ const registerNewUser = (req, res) => {
             });
         }
     });
-};
+}
+
 
 module.exports = {
     // getAllUsers,
     registerNewUser,
     loginUser,
+    // saveChannel
     // whoami
 }
