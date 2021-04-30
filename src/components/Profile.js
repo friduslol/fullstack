@@ -1,11 +1,12 @@
 import { UserContext } from "../contexts/UserContext";
 import { ChannelContext } from "../contexts/ChannelContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
     const { loggedinUser } = useContext(UserContext);
     const { fetchFaves, faves, setFaves } = useContext(ChannelContext);
-    // const [faves, setFaves] = useState();
+    const [removeFav, setRemoveFav] = useState();
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
         if(loggedinUser) {
@@ -32,6 +33,26 @@ const Profile = () => {
     //     })
     // }
 
+    const handleSave = (fave) => {
+        setRemoveFav(fave);
+        setUserId(loggedinUser.id);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        let removeChannel = {
+            removeFav,
+            userId
+        };
+
+        if(removeChannel.userId) {
+            let result = await registerRemove(removeChannel);
+            console.log(result);
+        } else {
+            console.log("something went wrong");
+        }
+    }
 
 
         return (
@@ -44,7 +65,12 @@ const Profile = () => {
                         <div>
                             <h2>Favoritkanaler:</h2>
                             {faves.map((fave, i) => (
+                                <div onSubmit={handleSubmit}>
                                 <p key={i}>{fave.channel.name}</p>
+                                <form>
+                            <button type="submit" onClick={() => handleSave(fave.channel.name)}>{`ta bort ${fave.channel.name}`}</button>
+                                </form>
+                            </div>
                             ))}
                         </div>
                         <div>
