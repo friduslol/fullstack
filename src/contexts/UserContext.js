@@ -89,6 +89,8 @@ const UserContextProvider = (props) => {
         registerNewUser,
         loginUser,
         registerFav,
+        setLoggedinUser,
+        setIsLoggedin,
         // fetchFaves,
         isLoggedin,
         loggedinUser

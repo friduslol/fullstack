@@ -4,5 +4,7 @@ const favController = require("../controllers/favController");
 
 router.post("/saveChannel", favController.saveChannel);
 router.get("/faves/:userId", favController.getfaves);
+router.delete("/faves/:channelId", favController.removeFave);
+
 
 module.exports = router;
