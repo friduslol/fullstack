@@ -28,13 +28,6 @@ const Profile = () => {
 
 
         registerRemove(channelId, loggedinUser.id);
-
-        // if(removeChannel.channelId) {
-        //     let result = await
-        //     console.log("hej", result);
-        // } else {
-        //     console.log("something went wrong");
-        // }
     }
 
         return (
