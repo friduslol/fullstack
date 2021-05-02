@@ -10,6 +10,18 @@ const app = express();
 //parsing req.body for server
 app.use(express.json())
 
+app.use(
+  session({
+   secret: "The Phantom Menace",
+
+   resave: false,
+
+   saveUninitialized: true,
+
+   cookie: { secure: "auto" },
+  }),
+);
+
 //middleware for checking, get accsess to all routes
 app.use("/api/v1/channels", channelRoutes);
 app.use('/api/v1/users', userRoutes);

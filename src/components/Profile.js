@@ -27,11 +27,8 @@ const Profile = () => {
     const handleSave = async (e, channelId) => {
         e.preventDefault();
 
-        registerRemove(channelId);
-        // let removeChannel = {
-        //     channelId,
-        //     // userId
-        // };
+
+        registerRemove(channelId, loggedinUser.id);
 
         // if(removeChannel.channelId) {
         //     let result = await

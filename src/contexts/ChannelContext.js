@@ -130,12 +130,13 @@ const ChannelContextProvider = (props) => {
         }))
     }
 
-    const registerRemove = async (channelId) => {
-        let result = await fetch(`/api/v1/favourites/faves/${channelId}`, {
+    const registerRemove = async (channelId, userId) => {
+        let result = await fetch(`/api/v1/favourites/faves`, {
             method: "DELETE",
             headers: {
               "content-type": "application/json",
             },
+            body: JSON.stringify({channelId, userId})
           });
           result = await result.json();
           console.log(result)
