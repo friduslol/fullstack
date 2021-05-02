@@ -130,6 +130,7 @@ const ChannelContextProvider = (props) => {
             console.log("did not get result yet");
         } else {
             loopingChannelId(result);
+            console.log(result);
         }
     };
 
@@ -138,6 +139,21 @@ const ChannelContextProvider = (props) => {
         fetchChannel(res.channelId);
         }))
     }
+
+    const registerRemove = async (channelId) => {
+        let result = await fetch(`/api/v1/favourites/faves/${channelId}`, {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          });
+          result = await result.json();
+          console.log(result)
+          console.log("in registerRemove", faves);
+          setFaves(faves.filter((fave) => channelId !== fave.channel.id));
+    }
+
+
 
 
     const values = {
@@ -149,6 +165,7 @@ const ChannelContextProvider = (props) => {
         fetchCategoryPrograms,
         fetchFaves,
         setFaves,
+        registerRemove,
         //saveChannelId,
         channels,
         channelSchedule,

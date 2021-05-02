@@ -43,7 +43,17 @@ const getfaves = (req, res) => {
 
 }
 
+const removeFave = (req, res) => {
+    let query = `DELETE FROM favourites WHERE channelID = $channelId`;
+    let params = { $channelId: req.params.channelId };
+
+    db.run(query, params, function (err) {
+        res.json({ success: "Post has been deleted", changes: this.changes });
+      });
+}
+
 module.exports = {
     saveChannel,
-    getfaves
+    getfaves,
+    removeFave
 }

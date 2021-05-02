@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
     const { loggedinUser } = useContext(UserContext);
-    const { fetchFaves, faves, setFaves } = useContext(ChannelContext);
-    const [removeFav, setRemoveFav] = useState();
-    const [userId, setUserId] = useState("");
+    const { fetchFaves, faves, setFaves, registerRemove } = useContext(ChannelContext);
+
+    //const [channelId, setChannelId] = useState();
+    //const [userId, setUserId] = useState("");
 
     useEffect(() => {
         if(loggedinUser) {
@@ -33,25 +34,26 @@ const Profile = () => {
     //     })
     // }
 
-    const handleSave = (fave) => {
-        setRemoveFav(fave);
-        setUserId(loggedinUser.id);
-    }
+    // const handleSave = (id) => {
+    //     setChannelId(id);
+    //     //setUserId(loggedinUser.id);
+    // }
 
-    const handleSubmit = async (e) => {
+    const handleSave = async (e, channelId) => {
         e.preventDefault();
 
-        let removeChannel = {
-            removeFav,
-            userId
-        };
+        registerRemove(channelId);
+        // let removeChannel = {
+        //     channelId,
+        //     // userId
+        // };
 
-        if(removeChannel.userId) {
-            let result = await registerRemove(removeChannel);
-            console.log(result);
-        } else {
-            console.log("something went wrong");
-        }
+        // if(removeChannel.channelId) {
+        //     let result = await
+        //     console.log("hej", result);
+        // } else {
+        //     console.log("something went wrong");
+        // }
     }
 
 
@@ -65,10 +67,10 @@ const Profile = () => {
                         <div>
                             <h2>Favoritkanaler:</h2>
                             {faves.map((fave, i) => (
-                                <div onSubmit={handleSubmit}>
+                                <div>
                                 <p key={i}>{fave.channel.name}</p>
                                 <form>
-                            <button type="submit" onClick={() => handleSave(fave.channel.name)}>{`ta bort ${fave.channel.name}`}</button>
+                                    <button type="submit" onClick={(e) => handleSave(e, fave.channel.id)}>{`ta bort ${fave.channel.name}`}</button>
                                 </form>
                             </div>
                             ))}
