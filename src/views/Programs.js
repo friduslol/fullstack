@@ -36,7 +36,7 @@ const Programs = (props) => {
         )
     }
 
-    return categoryPrograms ? renderPrograms() : <p>404, Error something went wrong!</p>
+    return categoryPrograms ? renderPrograms() : <p>loading...</p>
 }
 
 

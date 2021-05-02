@@ -6,19 +6,11 @@ const UserContextProvider = (props) => {
 
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [loggedinUser, setLoggedinUser] = useState(false);
-    // const [fav, setFav] = useState(false);
     const [faves, setFaves] = useState();
-
-    // const [member, setMember] = useState([]);
-
-    // useEffect(() => {
-    //     console.log("this is member in usercontext: ", member);
-    // }, [member])
 
     useEffect(() => {
         console.log(isLoggedin, loggedinUser);
     }, [loggedinUser])
-
 
     const registerNewUser = async (newUser) => {
         let result = await fetch("api/v1/users/register", {
@@ -63,35 +55,12 @@ const UserContextProvider = (props) => {
         return result;
     }
 
-
-    // const fetchFaves = async (userId) => {
-    //     let result = await fetch(`/api/v1/favourites/faves/${userId}`);
-    //     result = await result.json();
-    //     console.log("in userContext:", result);
-    //     if(result){
-    //         result.map((res) => {
-    //          data = getChannel(res.channelId);
-    //             return setFaves(data)
-    //         })
-    //     }
-    // };
-
-
-// const getFavChannels = (channels) => {
-//     channels.map((channel, i) => {
-//       channels = fetchCannelById(channel.channelId);
-//       return setFavChannel(channels)
-//     })
-// }
-
-
     const values = {
         registerNewUser,
         loginUser,
         registerFav,
         setLoggedinUser,
         setIsLoggedin,
-        // fetchFaves,
         isLoggedin,
         loggedinUser
     };

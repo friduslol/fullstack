@@ -7,22 +7,6 @@ const db = new sqlite3.Database(path.join(__dirname, "../../database/myDb.db"));
 
 db.all = util.promisify(db.all); //for get all users
 
-// const getAllUsers = async (reg, res) => {
-
-//     let query = `SELECT * FROM users`;
-//     db.all(query)
-//         .then((users) => {
-//             res.json(users);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         })
-// };
-
-// const whoami = (req, res) => {
-//     res.json(req.session.user || null);
-//   };
-
 const loginUser = (req, res) => {
     let query = `SELECT * FROM users WHERE email = $email`;
     let params = { $email: req.body.email };

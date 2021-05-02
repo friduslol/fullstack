@@ -19,10 +19,6 @@ const Navbar = () => {
                     <ReactBootstrap.Nav.Link as={Link} to="/User">Logga In</ReactBootstrap.Nav.Link>
                 )}
                 </ReactBootstrap.Nav>
-                <ReactBootstrap.Form inline>
-                <ReactBootstrap.FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <ReactBootstrap.Button variant="outline-success">Search</ReactBootstrap.Button>
-                </ReactBootstrap.Form>
             </ReactBootstrap.Navbar.Collapse>
 </ReactBootstrap.Navbar>
     )
