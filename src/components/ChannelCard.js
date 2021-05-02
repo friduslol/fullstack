@@ -2,18 +2,10 @@ import React, { useContext, useState } from 'react';
 import CCStyles from '../styles/ChannelCardStyles.module.css';
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext"
-//import { ChannelContext } from "../contexts/ChannelContext";
 
-//receiving props from parent CardsWrapper
 function ChannelCard(props) {
-    const { isLoggedin, loggedinUser, registerFav } = useContext(UserContext);
+    const { loggedinUser, registerFav } = useContext(UserContext);
     const historyHook = useHistory();
-    //const { saveChannelId } = useContext(ChannelContext);
-
-    // const clickToSave = (e) => {
-    //     e.stopPropagation();
-    //     saveChannelId(props.data.id);
-    // }
 
     const [userId, setUserId] = useState("");
     const [channelId, setChannelId] = useState("");
@@ -56,7 +48,7 @@ function ChannelCard(props) {
                 <p>{props.data.tagline}</p>
 
                 <p onClick={clickToRender}>{`Klicka för kanal ${props.data.name} >>`}</p>
-                {isLoggedin ? (
+                {loggedinUser ? (
                     <div onSubmit={handleSubmit}>
                         <form>
                             <button type="submit" onClick={handleSave}>SPARA Kanal</button>

@@ -10,7 +10,6 @@ function ChannelWrapper() {
     return (
         <div className={CCStyles.channelWrapper}>
             {channels.map((channel, i) => (
-                //sending props to channelCard
                 <ChannelCard key={i} data={channel} />
             ))}
         </div>

@@ -7,21 +7,15 @@ const db = new sqlite3.Database(path.join(__dirname, "../../database/myDb.db"));
 
 db.all = util.promisify(db.all); //for get all users
 
-// const getAllUsers = async (reg, res) => {
+const getCookie = (req, res) => {
+    res.json(req.session.user || null);
+  };
 
-//     let query = `SELECT * FROM users`;
-//     db.all(query)
-//         .then((users) => {
-//             res.json(users);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         })
-// };
+const logout = (req, res) => {
+    delete req.session.user;
+    res.json({ success: "Logout Successfully" });
+};
 
-// const whoami = (req, res) => {
-//     res.json(req.session.user || null);
-//   };
 
 const loginUser = (req, res) => {
     let query = `SELECT * FROM users WHERE email = $email`;
@@ -35,7 +29,8 @@ const loginUser = (req, res) => {
         req.body.password = Encrypt.encrypt(req.body.password);
         if (userInDB.password === req.body.password) {
           delete userInDB.password;
-          req.user = userInDB;
+          req.session.user = userInDB;
+
         //   res.json({ success: "Login successfull", loggedInUser: userInDB });
           res.json(userInDB);
           return;
@@ -82,6 +77,8 @@ module.exports = {
     // getAllUsers,
     registerNewUser,
     loginUser,
+    getCookie,
+    logout
     // saveChannel
     // whoami
 }

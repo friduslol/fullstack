@@ -1,8 +1,11 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+//import { UserContext } from "./UserContext";
 
 export const ChannelContext = createContext();
 
 const ChannelContextProvider = (props) => {
+    //const {loggedinUser} = useContext(UserContext);
+
     const [channels, setChannels] = useState([]);
     const [channelSchedule, setchannelSchedule] = useState([]);
     const [channel, setChannel] = useState(null);
@@ -17,15 +20,6 @@ const ChannelContextProvider = (props) => {
         console.log("this is faves", faves);
     }, [faves])
 
-    // const saveChannelId = (channelId) => {
-    //     if(!channelId) {
-    //         console.log("no channelId is saved");
-    //     } else {
-    //         setChannelId(channelId);
-    //     }
-    // }
-
-    //for fetching data about channels
     const fetchAllChannels = async () => {
         let channelsData = await fetch('api/v1/channels');
         channelsData = await channelsData.json();
@@ -37,7 +31,6 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-    //for fetching channel schedule
     const fetchSchedule = async (channelId) => {
         try {
             let scheduleData = await fetch(`/api/v1/channels/schedule/${channelId}`);
@@ -54,7 +47,6 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-    //for fetching data about unique channel
     const fetchChannel = async (channelId) => {
         try {
             let channelData = await fetch(`/api/v1/channels/channel/${channelId}`);
@@ -73,7 +65,6 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-    //for fetching programs from unique channel
     const fetchPrograms = async (channelId) => {
         try {
             let programs = await fetch(`/api/v1/channels/programs/${channelId}`);
@@ -90,7 +81,6 @@ const ChannelContextProvider = (props) => {
         }
     }
 
-    //for fetching categories
     const fetchCategories = async () => {
         try {
             let categoriesData = await fetch(`/api/v1/channels/categories`);
@@ -140,21 +130,19 @@ const ChannelContextProvider = (props) => {
         }))
     }
 
-    const registerRemove = async (channelId) => {
-        let result = await fetch(`/api/v1/favourites/faves/${channelId}`, {
+    const registerRemove = async (channelId, userId) => {
+        let result = await fetch(`/api/v1/favourites/faves`, {
             method: "DELETE",
             headers: {
               "content-type": "application/json",
             },
+            body: JSON.stringify({channelId, userId})
           });
           result = await result.json();
           console.log(result)
           console.log("in registerRemove", faves);
           setFaves(faves.filter((fave) => channelId !== fave.channel.id));
     }
-
-
-
 
     const values = {
         fetchAllChannels,
@@ -166,7 +154,6 @@ const ChannelContextProvider = (props) => {
         fetchFaves,
         setFaves,
         registerRemove,
-        //saveChannelId,
         channels,
         channelSchedule,
         channel,

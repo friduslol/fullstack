@@ -29,7 +29,7 @@ const Details = (props) => {
     };
 
     //if detailChannel is true den calling on func to render page, if not error msg will show
-    return channel ? renderDetails() : <p>404, Error something went wrong!</p>
+    return channel ? renderDetails() : <p>loading...</p>
 
 }
 

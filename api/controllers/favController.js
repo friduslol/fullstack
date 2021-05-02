@@ -7,8 +7,9 @@ const db = new sqlite3.Database(path.join(__dirname, "../../database/myDb.db"));
 const saveChannel = (req, res) => {
     let channelToRegister = req.body;
 
-    let query = `SELECT * FROM favourites WHERE channelId = $channelId`;
-    let params = { $channelId: channelToRegister.channelId };
+    let query = `SELECT * FROM favourites WHERE channelId = $channelId AND userId = $userId`;
+    console.log(channelToRegister);
+    let params = { $channelId: channelToRegister.channelId, $userId: channelToRegister.userId };
     db.get(query, params, (err, result) => {
         console.log("result: ", result);
         if(result) {
@@ -44,11 +45,13 @@ const getfaves = (req, res) => {
 }
 
 const removeFave = (req, res) => {
-    let query = `DELETE FROM favourites WHERE channelID = $channelId`;
-    let params = { $channelId: req.params.channelId };
+    let removeChannel = req.body;
+    console.log(removeChannel);
+    let query = `DELETE FROM favourites WHERE channelId = $channelId AND userId = $userId`;
+    let params = { $channelId: removeChannel.channelId, $userId: removeChannel.userId };
 
     db.run(query, params, function (err) {
-        res.json({ success: "Post has been deleted", changes: this.changes });
+        res.json({ success: "Channel has been deleted", changes: this.changes });
       });
 }
 
