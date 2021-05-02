@@ -1,0 +1,38 @@
+.scheduleCard {
+    padding: 5px;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.programHeader {
+    font-size: 1rem;
+}
+
+.scheduleWrapper {
+    padding: 5px;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+}
+
+.scheduleHeader {
+    padding: 5px;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* --------------- MEDIA QUERIES --------------- */
+@media screen and (min-width: 576px) {
+    .scheduleWrapper {
+        max-width: 500px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .scheduleWrapper {
+        max-width: 650px;
+    }
+}

@@ -1,0 +1,22 @@
+.detailsPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.detailsHeader {
+    margin: 5px;
+}
+
+
+
+/* --------------- MEDIA QUERIES --------------- */
+@media screen and (min-width: 768px) {
+    .detailsWrapper {
+       display: flex;
+
+    }
+}
