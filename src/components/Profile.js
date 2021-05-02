@@ -3,7 +3,7 @@ import { ChannelContext } from "../contexts/ChannelContext";
 import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
-    const { loggedinUser } = useContext(UserContext);
+    const { loggedinUser, setIsLoggedin, setLoggedinUser } = useContext(UserContext);
     const { fetchFaves, faves, setFaves, registerRemove } = useContext(ChannelContext);
 
     //const [channelId, setChannelId] = useState();
@@ -20,6 +20,12 @@ const Profile = () => {
            setFaves([]);
         };
     }, [loggedinUser])
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        setIsLoggedin(false);
+        setLoggedinUser(false);
+      };
 
     // useEffect(() => {
     //     return () => {
@@ -63,6 +69,7 @@ const Profile = () => {
                     <div>
                         <p>{loggedinUser.firstName} {loggedinUser.lastName}</p>
                         <p>{loggedinUser.email}</p>
+                        <button type="button" onClick={handleLogOut}>Logga ut</button>
 
                         <div>
                             <h2>Favoritkanaler:</h2>
