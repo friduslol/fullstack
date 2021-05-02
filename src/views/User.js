@@ -5,12 +5,12 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 
 const User = () => {
-    const { isLoggedin } = useContext(UserContext);
+    const { loggedinUser } = useContext(UserContext);
 
     return (
         <div>
             <h1>User page</h1>
-            {isLoggedin ? (
+            {loggedinUser ? (
                 <Profile />
             ) : (
                 <div>

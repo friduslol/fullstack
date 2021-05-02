@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require("express-session");
 const port = 3001;
 const channelRoutes = require('./routes/channelRoutes.js');
 const userRoutes = require('./routes/userRoutes');
@@ -12,13 +13,17 @@ app.use(express.json())
 
 app.use(
   session({
-   secret: "The Phantom Menace",
 
-   resave: false,
+  name: "Ballerina",
 
-   saveUninitialized: true,
+  secret: "The Phantom Menace",
 
-   cookie: { secure: "auto" },
+  resave: false,
+
+  //will only create cookie on use
+  saveUninitialized: false,
+                          //will expire after one week
+  cookie: { secure: false, maxAge: 7*24*60*60*1000},
   }),
 );
 

@@ -4,13 +4,26 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
-    const [isLoggedin, setIsLoggedin] = useState(false);
+    // const [isLoggedin, setIsLoggedin] = useState(false);
     const [loggedinUser, setLoggedinUser] = useState(false);
     const [faves, setFaves] = useState();
 
     useEffect(() => {
-        console.log(isLoggedin, loggedinUser);
+        console.log( loggedinUser);
     }, [loggedinUser])
+
+    useEffect(() => {
+        getCookie();
+    // eslint-disable-next-line
+    }, [])
+
+    const getCookie = async () => {
+        let result = await fetch("api/v1/users/getCookie");
+        result = await result.json();
+
+        setLoggedinUser(result);
+        console.log("in getcookie", result);
+    }
 
     const registerNewUser = async (newUser) => {
         let result = await fetch("api/v1/users/register", {
@@ -36,7 +49,7 @@ const UserContextProvider = (props) => {
         //return result;
 
         if(result.firstName) {
-            setIsLoggedin(true)
+            //setIsLoggedin(true)
             setLoggedinUser(result);
         } else {
             console.log("ojoj something went wrong");
@@ -55,14 +68,20 @@ const UserContextProvider = (props) => {
         return result;
     }
 
+    const logout = async () => {
+        let result = await fetch("api/v1/users/logout");
+        result = await result.json();
+        setLoggedinUser(false);
+        console.log(result);
+    }
+
     const values = {
         registerNewUser,
         loginUser,
         registerFav,
         setLoggedinUser,
-        setIsLoggedin,
-        isLoggedin,
-        loggedinUser
+        loggedinUser,
+        logout
     };
 
     return(

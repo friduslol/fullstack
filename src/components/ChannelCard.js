@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext"
 
 function ChannelCard(props) {
-    const { isLoggedin, loggedinUser, registerFav } = useContext(UserContext);
+    const { loggedinUser, registerFav } = useContext(UserContext);
     const historyHook = useHistory();
 
     const [userId, setUserId] = useState("");
@@ -48,7 +48,7 @@ function ChannelCard(props) {
                 <p>{props.data.tagline}</p>
 
                 <p onClick={clickToRender}>{`Klicka för kanal ${props.data.name} >>`}</p>
-                {isLoggedin ? (
+                {loggedinUser ? (
                     <div onSubmit={handleSubmit}>
                         <form>
                             <button type="submit" onClick={handleSave}>SPARA Kanal</button>

@@ -3,7 +3,7 @@ import { ChannelContext } from "../contexts/ChannelContext";
 import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
-    const { loggedinUser, setIsLoggedin, setLoggedinUser, editUser } = useContext(UserContext);
+    const { loggedinUser, logout } = useContext(UserContext);
     const { fetchFaves, faves, setFaves, registerRemove } = useContext(ChannelContext);
 
     useEffect(() => {
@@ -20,8 +20,7 @@ const Profile = () => {
 
     const handleLogOut = (e) => {
         e.preventDefault();
-        setIsLoggedin(false);
-        setLoggedinUser(false);
+        logout();
       };
 
     const handleSave = async (e, channelId) => {
