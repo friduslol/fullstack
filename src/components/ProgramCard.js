@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from "../contexts/UserContext"
 
 function ProgramCard(props) {
-    const { loggedinUser } = useContext(UserContext);
+    const { loggedinUser, registerFav } = useContext(UserContext);
 
     const [userId, setUserId] = useState("");
     const [programId, setprogramId] = useState("");
@@ -25,7 +25,7 @@ function ProgramCard(props) {
         };
 
         if(favProgram.userId) {
-            let result = favProgram;
+            let result = await registerFav(favProgram);
             console.log(result);
         } else {
             console.log("oupsi could not save program");
