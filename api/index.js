@@ -32,6 +32,7 @@ app.use("/api/v1/channels", channelRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use("/api/v1/favourites", favRoutes);
 
+
 //starts the server
 app.listen(port, (err) => {
     if (err) {

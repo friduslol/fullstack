@@ -56,13 +56,13 @@ const UserContextProvider = (props) => {
         }
     }
 
-    const registerFav = async (favChannel) => {
-        let result = await fetch("api/v1/favourites/saveChannel", {
+    const registerFav = async (fave) => {
+        let result = await fetch("/api/v1/favourites/saveFave", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(favChannel),
+            body: JSON.stringify(fave),
         });
         result = await result.json();
         return result;
