@@ -57,7 +57,7 @@ const UserContextProvider = (props) => {
     }
 
     const registerFav = async (fave) => {
-        let result = await fetch("api/v1/favourites/saveFave", {
+        let result = await fetch("/api/v1/favourites/saveFave", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

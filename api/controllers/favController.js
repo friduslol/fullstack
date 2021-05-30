@@ -67,11 +67,23 @@ const getfaves = (req, res) => {
     let query = `SELECT * FROM favourites WHERE userId = $userId`;
     let params = { $userId: req.params.userId};
     db.all(query, params, (err, channels) => {
-        console.log("in fetfaves", channels);
+        console.log("in getfaves", channels);
         res.json(channels);
       });
 
 }
+
+const getfavePrograms = (req, res) => {
+    let query = `SELECT * FROM favPrograms WHERE userId = $userId`;
+    let params = { $userId: req.params.userId};
+    db.all(query, params, (err, programs) => {
+        console.log("in getfavePrograms", programs);
+        res.json(programs);
+      });
+
+}
+
+
 
 const removeFave = (req, res) => {
     let removeChannel = req.body;
@@ -88,4 +100,5 @@ module.exports = {
     saveChannel,
     getfaves,
     removeFave,
+    getfavePrograms
 }

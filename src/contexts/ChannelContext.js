@@ -15,10 +15,7 @@ const ChannelContextProvider = (props) => {
 
     // const [tempArray, setTempArray] = useState(null)
     const [faves, setFaves] = useState([]);
-
-    useEffect(() => {
-        console.log("this is faves", faves);
-    }, [faves])
+    const [faveP, setFaveP] = useState();
 
     const fetchAllChannels = async () => {
         let channelsData = await fetch('api/v1/channels');
@@ -124,6 +121,17 @@ const ChannelContextProvider = (props) => {
         }
     };
 
+    const fetchFavePrograms = async (userId) => {
+        let result = await fetch(`/api/v1/favourites/getfavePrograms/${userId}`);
+        result = await result.json();
+        if(result.length === 0) {
+            console.log("did not get result yet");
+        } else {
+            setFaveP(result)
+        }
+    };
+
+
     const loopingChannelId =  (result) => {
         result.map((res =>{
         fetchChannel(res.channelId);
@@ -154,13 +162,15 @@ const ChannelContextProvider = (props) => {
         fetchFaves,
         setFaves,
         registerRemove,
+        fetchFavePrograms,
         channels,
         channelSchedule,
         channel,
         channelPrograms,
         categories,
         categoryPrograms,
-        faves
+        faves,
+        faveP
     };
 
     return(

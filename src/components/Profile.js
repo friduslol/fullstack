@@ -4,11 +4,12 @@ import { useContext, useEffect, useState } from "react";
 
 const Profile = () => {
     const { loggedinUser, logout } = useContext(UserContext);
-    const { fetchFaves, faves, setFaves, registerRemove } = useContext(ChannelContext);
+    const { fetchFaves, fetchFavePrograms, faves, faveP, setFaves, registerRemove } = useContext(ChannelContext);
 
     useEffect(() => {
         if(loggedinUser) {
             fetchFaves(loggedinUser.id)
+            fetchFavePrograms(loggedinUser.id)
         }
         console.log("in profile", loggedinUser);
 
@@ -48,6 +49,12 @@ const Profile = () => {
                                 </form>
                             </div>
                             ))}
+                            <h2>FavoritProgram:</h2>
+                            {faveP && faveP.map((fave, i) => (
+                                <div key={i}>
+                                    <p>{fave.programName}</p>
+                                </div>
+                            ) )}
                         </div>
                     </div>
                 ) : (
